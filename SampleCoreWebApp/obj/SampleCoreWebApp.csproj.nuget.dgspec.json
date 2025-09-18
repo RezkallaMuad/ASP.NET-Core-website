@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj": {}
+    "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj": {}
   },
   "projects": {
-    "c:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj": {
+    "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj",
         "projectName": "SampleCoreWebApp",
-        "projectPath": "c:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj",
+        "projectPath": "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj",
         "packagesPath": "C:\\Users\\muadr\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\obj\\",
+        "outputPath": "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\muadr\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,22 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
