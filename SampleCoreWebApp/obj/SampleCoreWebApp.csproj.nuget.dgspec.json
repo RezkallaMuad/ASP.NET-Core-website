@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj": {}
+    "C:\\Users\\muadr\\OneDrive\\Desktop\\repos\\ASP.NET-Core-website\\SampleCoreWebApp\\SampleCoreWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj": {
+    "C:\\Users\\muadr\\OneDrive\\Desktop\\repos\\ASP.NET-Core-website\\SampleCoreWebApp\\SampleCoreWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\muadr\\OneDrive\\Desktop\\repos\\ASP.NET-Core-website\\SampleCoreWebApp\\SampleCoreWebApp.csproj",
         "projectName": "SampleCoreWebApp",
-        "projectPath": "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\SampleCoreWebApp.csproj",
+        "projectPath": "C:\\Users\\muadr\\OneDrive\\Desktop\\repos\\ASP.NET-Core-website\\SampleCoreWebApp\\SampleCoreWebApp.csproj",
         "packagesPath": "C:\\Users\\muadr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\muadr\\Desktop\\aspnetapp\\SampleCoreWebApp\\obj\\",
+        "outputPath": "C:\\Users\\muadr\\OneDrive\\Desktop\\repos\\ASP.NET-Core-website\\SampleCoreWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\muadr\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -44,6 +44,12 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.CodeAnalysis.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.9, )"
@@ -57,6 +63,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.9, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.0, )"
             }
           },
           "imports": [
