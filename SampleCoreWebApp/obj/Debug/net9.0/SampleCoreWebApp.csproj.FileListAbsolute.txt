@@ -220,6 +220,10 @@ C:\Users\muadr\Desktop\aspnetapp\SampleCoreWebApp\obj\Debug\net9.0\SampleCoreWeb
 C:\Users\muadr\Desktop\aspnetapp\SampleCoreWebApp\obj\Debug\net9.0\ref\SampleCoreWebApp.dll
 C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\appsettings.json
+C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\client\package-lock.json
+C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\client\package.json
+C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\client\public\manifest.json
+C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\client\tsconfig.json
 C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\SampleCoreWebApp.staticwebassets.runtime.json
 C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\SampleCoreWebApp.staticwebassets.endpoints.json
 C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\SampleCoreWebApp.exe
