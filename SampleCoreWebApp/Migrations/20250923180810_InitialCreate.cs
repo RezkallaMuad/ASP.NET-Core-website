@@ -18,8 +18,8 @@ namespace SampleCoreWebApp.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
-                    technologies = table.Column<string>(type: "TEXT", nullable: false),
-                    GithubUrl = table.Column<string>(type: "TEXT", nullable: false),
+                    Technologies = table.Column<string>(type: "TEXT", nullable: false),
+                    GitHubUrl = table.Column<string>(type: "TEXT", nullable: false),
                     Demo = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

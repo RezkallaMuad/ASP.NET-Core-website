@@ -10,7 +10,7 @@ using SampleCoreWebApp.Data;
 namespace SampleCoreWebApp.Migrations
 {
     [DbContext(typeof(Dbcon))]
-    [Migration("20250918191531_InitialCreate")]
+    [Migration("20250923180810_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,7 +33,7 @@ namespace SampleCoreWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("GithubUrl")
+                    b.Property<string>("GitHubUrl")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -41,7 +41,7 @@ namespace SampleCoreWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("technologies")
+                    b.Property<string>("Technologies")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

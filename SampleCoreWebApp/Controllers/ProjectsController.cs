@@ -33,5 +33,13 @@ namespace SampleCoreWebApp.Controllers
 
             return project;
         }
+        [HttpPost]
+        public async Task<ActionResult<Project>> AddProject(Project project)
+        {
+            _context.Projects.Add(project);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
+        }
     }
 }

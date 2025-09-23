@@ -30,7 +30,7 @@ namespace SampleCoreWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("GithubUrl")
+                    b.Property<string>("GitHubUrl")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -38,7 +38,7 @@ namespace SampleCoreWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("technologies")
+                    b.Property<string>("Technologies")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
