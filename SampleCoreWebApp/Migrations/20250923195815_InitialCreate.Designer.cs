@@ -10,7 +10,7 @@ using SampleCoreWebApp.Data;
 namespace SampleCoreWebApp.Migrations
 {
     [DbContext(typeof(Dbcon))]
-    [Migration("20250923180810_InitialCreate")]
+    [Migration("20250923195815_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
