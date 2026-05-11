@@ -3,9 +3,8 @@ using SampleCoreWebApp.Models;
 
 namespace SampleCoreWebApp.Data
 {
-    public class Dbcon : DbContext
+    public class Dbcon(DbContextOptions<Dbcon> options) : DbContext(options)
     {
-        public Dbcon(DbContextOptions<Dbcon> options) : base(options){}
         public DbSet<Project> Projects { get; set; }
     }
 }

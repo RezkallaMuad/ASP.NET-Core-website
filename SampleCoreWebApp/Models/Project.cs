@@ -8,12 +8,11 @@ namespace SampleCoreWebApp.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Technologies { get; set; }
-        public string GitHubUrl { get; set; }
-        public string Demo { get; set; }
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public required string Technologies { get; set; }
+        public required string GitHubUrl { get; set; }
+        public required string Demo { get; set; }
 
     }
 }
