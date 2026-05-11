@@ -1,4 +1,5 @@
 import React from "react";
+import ProjectsList from "./ProjectsList";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function ProjectsSection() {
       <p style={{ fontSize: 15, color: "#6b6760", lineHeight: 1.7, maxWidth: 680 }}>
         A selection of recent projects showcasing experience in web development and security.
       </p>
+      <ProjectsList />
     </section>
   );
 }
