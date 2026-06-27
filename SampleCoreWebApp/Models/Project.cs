@@ -13,6 +13,8 @@ namespace SampleCoreWebApp.Models
         public required string Technologies { get; set; }
         public required string GitHubUrl { get; set; }
         public required string Demo { get; set; }
-
+        public string? ImageUrl { get; set; }
+        public string? VideoUrl { get; set; }
     }
+    
 }
