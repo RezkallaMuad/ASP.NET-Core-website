@@ -16,6 +16,13 @@ export default function ProjectDetailPage() {
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeMedia, setActiveMedia] = useState(0);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -57,15 +64,15 @@ export default function ProjectDetailPage() {
   const contributors = project.contributors ?? [];
 
   return (
-    <div style={{ padding: "60px 40px", maxWidth: 1100, margin: "0 auto" }}>
+    <div style={{ padding: isMobile ? "40px 20px" : "60px 40px", maxWidth: 1100, margin: "0 auto" }}>
       <Link to="/#projects" style={{ fontSize: 13, color: PALETTE.muted, textDecoration: "none" }}>
         ← Back to projects
       </Link>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 60, marginTop: 30 }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.2fr", gap: isMobile ? 30 : 60, marginTop: 30 }}>
         {/* Left: project summary */}
         <div>
-          <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 36, marginBottom: 20, color: PALETTE.text }}>
+          <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 30 : 36, marginBottom: 20, color: PALETTE.text }}>
             {project.name}
           </h1>
           <p style={{ fontSize: 15, color: PALETTE.muted, lineHeight: 1.8, marginBottom: 24 }}>
@@ -106,7 +113,7 @@ export default function ProjectDetailPage() {
           {media.length === 0 ? (
             <div
               style={{
-                height: 320,
+                height: isMobile ? 240 : 320,
                 background: PALETTE.cardBg,
                 border: `1px solid ${PALETTE.border}`,
                 borderRadius: 8,
@@ -123,7 +130,7 @@ export default function ProjectDetailPage() {
             <>
               <div
                 style={{
-                  height: 360,
+                  height: isMobile ? 240 : 360,
                   background: PALETTE.cardBg,
                   border: `1px solid ${PALETTE.border}`,
                   borderRadius: 8,

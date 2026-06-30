@@ -35,13 +35,21 @@ function App() {
 }
 
 function Nav() {
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <nav
       style={{
         display: "flex",
         justifyContent: "right",
         alignItems: "center",
-        padding: "20px 40px",
+        padding: isMobile ? "16px 20px" : "20px 40px",
         borderBottom: `1px solid ${PALETTE.border}`,
         position: "sticky",
         top: 0,
@@ -91,6 +99,13 @@ const navLinkStyle: React.CSSProperties = {
 function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     fetch("/api/Projects")
@@ -111,8 +126,8 @@ function Home() {
   return (
     <div>
       <TopSection />
-      <section id="projects" style={{ padding: "60px 40px", borderBottom: `1px solid ${PALETTE.border}` }}>
-        <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 36, marginBottom: 16, color: PALETTE.text }}>
+      <section id="projects" style={{ padding: isMobile ? "45px 20px" : "60px 40px", borderBottom: `1px solid ${PALETTE.border}` }}>
+        <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 28 : 36, marginBottom: 16, color: PALETTE.text }}>
           Projects
         </h2>
         {loading ? (
@@ -122,8 +137,8 @@ function Home() {
         )}
       </section>
 
-      <section id="blog" style={{ padding: "60px 40px" }}>
-        <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 36, marginBottom: 16, color: PALETTE.text }}>
+      <section id="blog" style={{ padding: isMobile ? "45px 20px" : "60px 40px" }}>
+        <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 28 : 36, marginBottom: 16, color: PALETTE.text }}>
           Blog
         </h2>
         <BlogPostsSection />
@@ -253,12 +268,20 @@ function BlogCard({ post }: { post: BlogPost }) {
 }
 
 function TopSection() {
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "240px 1fr",
-        minHeight: 360,
+        gridTemplateColumns: isMobile ? "1fr" : "240px 1fr",
+        minHeight: isMobile ? "auto" : 360,
         borderBottom: `1px solid ${PALETTE.border}`,
       }}
     >
@@ -266,12 +289,13 @@ function TopSection() {
       <div
         style={{
           background: PALETTE.cardBg,
-          borderRight: `1px solid ${PALETTE.border}`,
+          borderRight: isMobile ? "none" : `1px solid ${PALETTE.border}`,
+          borderBottom: isMobile ? `1px solid ${PALETTE.border}` : "none",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "32px 18px",
+          padding: isMobile ? "40px 20px" : "32px 18px",
           gap: 14,
         }}
       >
@@ -315,7 +339,7 @@ function TopSection() {
         </div>
       </div>
 
-      <div style={{ padding: "40px 40px", display: "flex", flexDirection: "column", justifyContent: "" }}>
+      <div style={{ padding: isMobile ? "30px 20px" : "40px 40px", display: "flex", flexDirection: "column", justifyContent: "" }}>
         <p
           style={{
             fontFamily: "'DM Mono', monospace",
@@ -328,7 +352,7 @@ function TopSection() {
         >
           Software Developer
         </p>
-        <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 40, lineHeight: 1.2, marginBottom: 20, color: PALETTE.text }}>
+        <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: isMobile ? 32 : 40, lineHeight: 1.2, marginBottom: 20, color: PALETTE.text }}>
           Muad Rezkalla
         </h1>
         <p style={{ fontSize: 15, color: PALETTE.muted, lineHeight: 1.7, maxWidth: 640 }}>
@@ -342,6 +366,13 @@ function TopSection() {
 
 function SkillsSection() {
   const [skills, setSkills] = useState<Skill[]>([]);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     fetch("/api/Skills")
@@ -362,10 +393,10 @@ function SkillsSection() {
   }, {} as Record<string, string[]>);
 
   return (
-    <div style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 12 }}>
+    <div style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 16 }}>
       {Object.entries(categories).map(([category, names]) => (
-        <div key={category} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: PALETTE.accent, minWidth: 100 }}>
+        <div key={category} style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? 6 : 8 }}>
+          <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: PALETTE.accent, minWidth: isMobile ? "auto" : 100 }}>
             {category}
           </span>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>

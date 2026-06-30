@@ -19,7 +19,16 @@ interface Props {
 
 export default function ProjectsCarousel({ projects }: Props) {
   const [page, setPage] = useState(0);
-  const pageCount = Math.max(1, Math.ceil(projects.length / ITEMS_PER_PAGE));
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const itemsPerPage = isMobile ? 1 : 3;
+  const pageCount = Math.max(1, Math.ceil(projects.length / itemsPerPage));
 
   const goNext = () => setPage((p) => (p + 1) % pageCount);
   const goPrev = () => setPage((p) => (p - 1 + pageCount) % pageCount);
@@ -28,12 +37,13 @@ export default function ProjectsCarousel({ projects }: Props) {
     return <p style={{ color: PALETTE.muted }}>No projects found.</p>;
   }
 
-  const visible = projects.slice(page * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE + ITEMS_PER_PAGE);
+  const currentPage = Math.min(page, pageCount - 1);
+  const visible = projects.slice(currentPage * itemsPerPage, currentPage * itemsPerPage + itemsPerPage);
 
   return (
     <div style={{ marginTop: 40 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-        {pageCount > 1 && (
+      <div style={{ display: "flex", alignItems: "center", gap: isMobile ? 16 : 20, flexDirection: isMobile ? "column" : "row" }}>
+        {!isMobile && pageCount > 1 && (
           <button onClick={goPrev} aria-label="Previous projects" style={arrowButtonStyle}>
             <ArrowIcon direction="left" />
           </button>
@@ -42,8 +52,9 @@ export default function ProjectsCarousel({ projects }: Props) {
         <div
           style={{
             flex: 1,
+            width: "100%",
             display: "grid",
-            gridTemplateColumns: `repeat(${Math.min(ITEMS_PER_PAGE, visible.length)}, 1fr)`,
+            gridTemplateColumns: isMobile ? "1fr" : `repeat(${Math.min(3, visible.length)}, 1fr)`,
             gap: 24,
           }}
         >
@@ -52,14 +63,28 @@ export default function ProjectsCarousel({ projects }: Props) {
           ))}
         </div>
 
-        {pageCount > 1 && (
+        {!isMobile && pageCount > 1 && (
           <button onClick={goNext} aria-label="Next projects" style={arrowButtonStyle}>
             <ArrowIcon direction="right" />
           </button>
         )}
+
+        {isMobile && pageCount > 1 && (
+          <div style={{ display: "flex", alignItems: "center", gap: 24, marginTop: 8 }}>
+            <button onClick={goPrev} aria-label="Previous projects" style={arrowButtonStyle}>
+              <ArrowIcon direction="left" />
+            </button>
+            <span style={{ fontSize: 13, color: PALETTE.muted, fontWeight: 500 }}>
+              {currentPage + 1} / {pageCount}
+            </span>
+            <button onClick={goNext} aria-label="Next projects" style={arrowButtonStyle}>
+              <ArrowIcon direction="right" />
+            </button>
+          </div>
+        )}
       </div>
 
-      {pageCount > 1 && (
+      {!isMobile && pageCount > 1 && (
         <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 24 }}>
           {Array.from({ length: pageCount }).map((_, i) => (
             <button
@@ -73,7 +98,7 @@ export default function ProjectsCarousel({ projects }: Props) {
                 border: "none",
                 padding: 0,
                 cursor: "pointer",
-                background: i === page ? PALETTE.accent : PALETTE.border,
+                background: i === currentPage ? PALETTE.accent : PALETTE.border,
               }}
             />
           ))}
