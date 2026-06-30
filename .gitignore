@@ -71,3 +71,10 @@ yarn-error.log*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# ==========================================
+# 📄 LOCAL DEPLOYMENT DOCUMENTATION
+# ==========================================
+/azure-deploy.md
+/deployment_guide.md
+
