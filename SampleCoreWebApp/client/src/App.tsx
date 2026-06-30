@@ -396,7 +396,12 @@ function SkillsSection() {
 function Footer() {
   return (
     <footer style={{ padding: "40px", textAlign: "center", color: PALETTE.muted }}>
-      <p style={{ margin: 0, fontSize: 13 }}>&copy; {new Date().getFullYear()} Muad Rezkalla. All rights reserved.</p>
+      <p style={{ margin: 0, fontSize: 13, marginBottom: 6 }}>
+        &copy; {new Date().getFullYear()} Muad Rezkalla. All rights reserved.
+      </p>
+      <p style={{ margin: 0, fontSize: 11, letterSpacing: "0.03em", opacity: 0.8 }}>
+        Hosted on Microsoft Azure | CI/CD via GitHub Actions
+      </p>
     </footer>
   );
 }
