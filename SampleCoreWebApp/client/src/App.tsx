@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import ProjectsCarousel from "./ProjectsCarousel";
 import ProjectPage from "./ProjectPage";
 import BlogPostPage from "./BlogPostPage";
-import { Project, BlogPost } from "./types";
+import { Project, BlogPost, Skill } from "./types";
 import profileImg from "./assets/ProfilePic.jpeg"; 
 import githubIcon from "./assets/Github.png";
 import emailIcon from "./assets/Email.svg";
@@ -334,7 +334,61 @@ function TopSection() {
         <p style={{ fontSize: 15, color: PALETTE.muted, lineHeight: 1.7, maxWidth: 640 }}>
          Software developer with experience across full-stack applications, embedded systems, cybersecurity, and AI integration. Built projects including a Discord bot deployed to 100+ concurrent users, a secure messaging protocol, a distributed sensor network, and database-driven desktop and web apps. Comfortable working solo or within a team.
         </p>
+        <SkillsSection />
       </div>
+    </div>
+  );
+}
+
+function SkillsSection() {
+  const [skills, setSkills] = useState<Skill[]>([]);
+
+  useEffect(() => {
+    fetch("/api/Skills")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setSkills(data))
+      .catch((err) => console.error("Error fetching skills:", err));
+  }, []);
+
+  if (skills.length === 0) return null;
+
+  // Group skills by category
+  const categories = skills.reduce((acc, skill) => {
+    if (!acc[skill.category]) {
+      acc[skill.category] = [];
+    }
+    acc[skill.category].push(skill.name);
+    return acc;
+  }, {} as Record<string, string[]>);
+
+  return (
+    <div style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 12 }}>
+      {Object.entries(categories).map(([category, names]) => (
+        <div key={category} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: PALETTE.accent, minWidth: 100 }}>
+            {category}
+          </span>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {names.map((name) => (
+              <span
+                key={name}
+                style={{
+                  fontSize: 12,
+                  background: PALETTE.cardBg,
+                  border: `1px solid ${PALETTE.border}`,
+                  color: PALETTE.text,
+                  padding: "6px 12px",
+                  borderRadius: "20px",
+                  fontWeight: 500,
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.02)",
+                }}
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
