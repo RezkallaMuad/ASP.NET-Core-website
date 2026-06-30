@@ -450,3 +450,4 @@ C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\obj\
 C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\obj\Debug\net9.0\swae.build.ex.cache
 C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\client\build\asset-manifest.json
 C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\client\build\manifest.json
+C:\Users\muadr\OneDrive\Desktop\repos\ASP.NET-Core-website\SampleCoreWebApp\bin\Debug\net9.0\package-lock.json

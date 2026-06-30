@@ -1,16 +1,12 @@
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
+namespace SampleCoreWebApp.Models;
 
-namespace SampleCoreWebApp.Models
+public class BlogPost
 {
-    public class BlogPost
-    {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-        public required string Title { get; set; }
-        public required string Summary { get; set; }
-        public required string Content { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public string? ImageUrl { get; set; }
-    }
+    public int ID { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string Summary { get; set; } = string.Empty;
+    public string Content { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public string? ImageUrl { get; set; }
 }
