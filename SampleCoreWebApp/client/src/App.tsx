@@ -51,9 +51,6 @@ function Nav() {
       }}
     >
       <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
-        <Link to="/" style={navLinkStyle}>Home</Link>
-        <a href="/#projects" style={navLinkStyle}>Projects</a>
-        <a href="/#blog" style={navLinkStyle}>Blog</a>
         <a
           href="/resume.pdf"
           target="_blank"
