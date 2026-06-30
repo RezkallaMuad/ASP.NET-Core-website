@@ -11,8 +11,6 @@ const PALETTE = {
   cardBg: "#ffffff",
 };
 
-const ITEMS_PER_PAGE = 3;
-
 interface Props {
   projects: Project[];
 }
