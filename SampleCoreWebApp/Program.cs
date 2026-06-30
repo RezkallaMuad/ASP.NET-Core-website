@@ -9,8 +9,21 @@ var builder = WebApplication.CreateBuilder(args);
 // -------------------
 
 // Add DbContext
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("WEBSITE_INSTANCE_ID")))
+{
+    var homeDirectory = Environment.GetEnvironmentVariable("HOME") ?? @"C:\home";
+    var dbFolder = Path.Combine(homeDirectory, "data");
+    if (!Directory.Exists(dbFolder))
+    {
+        Directory.CreateDirectory(dbFolder);
+    }
+    connectionString = $"Data Source={Path.Combine(dbFolder, "SampleCoreWebApp.db")}";
+}
+
 builder.Services.AddDbContext<Dbcon>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(connectionString));
 
 // Add Razor Pages
 builder.Services.AddRazorPages();
