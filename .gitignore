@@ -1,0 +1,73 @@
+# ==========================================
+# 🔐 SENSITIVE & SECURITY IGNORES
+# ==========================================
+# Standalone local admin panels / management pages
+/admin-tool.html
+
+# Local configuration files containing credentials/secrets
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+.env
+.env.*
+*.env
+
+# SQLite local databases and sqlite cache journals
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Security Certificates and private keys
+*.pfx
+*.p12
+*.key
+*.pem
+*.cer
+*.crt
+*.der
+
+# ==========================================
+# 🛠️ DOTNET (C#) BUILD & OUTPUTS
+# ==========================================
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Dd]ist/
+publish/
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+MonoAndroid/
+MonoTouch/
+tizen/
+
+# ==========================================
+# 📦 NODE / REACT FRONTEND IGNORES
+# ==========================================
+node_modules/
+/SampleCoreWebApp/client/node_modules/
+/SampleCoreWebApp/client/build/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.eslintcache
+
+# ==========================================
+# 💻 OS-SPECIFIC FILES
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
