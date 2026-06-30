@@ -1,0 +1,42 @@
+name: Build and Deploy to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js (needed for React client build during dotnet publish)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'SampleCoreWebApp/client/package-lock.json'
+
+      # 3. Setup .NET SDK
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # 4. Build and Publish the application
+      # This automatically triggers the React frontend npm install and build via SampleCoreWebApp.csproj
+      - name: Dotnet Publish
+        run: dotnet publish SampleCoreWebApp/SampleCoreWebApp.csproj -c Release -o ${{ github.workspace }}/publish
+
+      # 5. Deploy to Azure Web App
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: ${{ github.workspace }}/publish
