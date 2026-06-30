@@ -22,3 +22,10 @@ export interface BlogPost {
   createdAt: string;
   imageUrl?: string;
 }
+
+export interface Skill {
+  id: number;
+  name: string;
+  category: string;
+  displayOrder: number;
+}

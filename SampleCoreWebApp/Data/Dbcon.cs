@@ -8,5 +8,7 @@ namespace SampleCoreWebApp.Data
         public DbSet<Project> Projects { get; set; }
 
         public DbSet<BlogPost> BlogPosts { get; set; }
+
+        public DbSet<Skill> Skills { get; set; }
     }
 }

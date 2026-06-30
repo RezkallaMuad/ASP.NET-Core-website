@@ -329,14 +329,13 @@ function TopSection() {
             marginBottom: 10,
           }}
         >
-          Computing Science Student
+          Software Developer
         </p>
         <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 40, lineHeight: 1.2, marginBottom: 20, color: PALETTE.text }}>
-          hey.
+          Muad Rezkalla
         </h1>
         <p style={{ fontSize: 15, color: PALETTE.muted, lineHeight: 1.7, maxWidth: 640 }}>
-          Software developer with a passion for building web applications and exploring new technologies. 
-          I enjoy working on projects that challenge me to learn and grow as a developer.
+         Software developer with experience across full-stack applications, embedded systems, cybersecurity, and AI integration. Built projects including a Discord bot deployed to 100+ concurrent users, a secure messaging protocol, a distributed sensor network, and database-driven desktop and web apps. Comfortable working solo or within a team.
         </p>
       </div>
     </div>
