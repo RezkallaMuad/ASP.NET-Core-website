@@ -50,11 +50,35 @@ function Nav() {
         zIndex: 10,
       }}
     >
-      <div style={{ display: "flex", gap: 28 }}>
+      <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
         <Link to="/" style={navLinkStyle}>Home</Link>
         <a href="/#projects" style={navLinkStyle}>Projects</a>
         <a href="/#blog" style={navLinkStyle}>Blog</a>
-        <a href="/resume.pdf" style={navLinkStyle}>Resume</a>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            ...navLinkStyle,
+            color: "#ffffff",
+            background: PALETTE.accent,
+            padding: "8px 16px",
+            borderRadius: "20px",
+            fontWeight: 600,
+            boxShadow: "0 2px 4px rgba(29, 78, 216, 0.15)",
+            transition: "all 0.2s ease-in-out",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "#1e40af";
+            e.currentTarget.style.transform = "translateY(-1px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = PALETTE.accent;
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+        >
+          Resume
+        </a>
       </div>
     </nav>
   );

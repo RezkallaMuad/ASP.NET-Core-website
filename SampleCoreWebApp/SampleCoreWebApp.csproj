@@ -20,4 +20,20 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.0" />
   </ItemGroup>
 
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- Ensure frontend resources are freshly built during C# publish -->
+    <Exec Command="npm install" WorkingDirectory="client" />
+    <Exec Command="npm run build" WorkingDirectory="client" />
+
+    <!-- Include the React build assets in the final C# build wwwroot folder -->
+    <ItemGroup>
+      <DistFiles Include="client\build\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
 </Project>
