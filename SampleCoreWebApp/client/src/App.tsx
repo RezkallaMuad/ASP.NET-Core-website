@@ -57,12 +57,9 @@ function Nav() {
             fontWeight: 700,
             fontSize: 14,
             color: PALETTE.text,
-            display: "flex",
-            alignItems: "center",
-            gap: 6
           }}
         >
-          <span>🏠</span> Home
+          Home
         </Link>
       </div>
 
