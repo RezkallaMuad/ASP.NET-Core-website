@@ -175,42 +175,23 @@ export default function ProjectDetailPage() {
               </div>
 
               {media.length > 1 && (
-                <div style={{ display: "flex", gap: 10, marginTop: 14, overflowX: "auto" }}>
-                  {media.map((m, i) => (
+                <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 16 }}>
+                  {media.map((_, i) => (
                     <button
-                      key={m.url}
+                      key={i}
                       onClick={() => setActiveMedia(i)}
-                      aria-label={`Show media item ${i + 1}`}
+                      aria-label={`Go to slide ${i + 1}`}
                       style={{
-                        width: 64,
-                        height: 48,
-                        flexShrink: 0,
-                        border: i === activeMedia ? `2px solid ${PALETTE.accent}` : `1px solid ${PALETTE.border}`,
-                        borderRadius: 4,
+                        width: 8,
+                        height: 8,
+                        borderRadius: "50%",
+                        border: "none",
                         padding: 0,
-                        overflow: "hidden",
                         cursor: "pointer",
-                        background: PALETTE.cardBg,
+                        background: i === activeMedia ? PALETTE.accent : PALETTE.border,
+                        transition: "background 0.2s ease",
                       }}
-                    >
-                      {m.type === "video" ? (
-                        <div
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: 11,
-                            color: PALETTE.muted,
-                          }}
-                        >
-                          ▶
-                        </div>
-                      ) : (
-                        <img src={m.url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                      )}
-                    </button>
+                    />
                   ))}
                 </div>
               )}

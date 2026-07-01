@@ -39,6 +39,8 @@ function Nav() {
     <nav
       className="nav-container"
       style={{
+        display: "flex",
+        justifyContent: "space-between",
         borderBottom: `1px solid ${PALETTE.border}`,
         position: "sticky",
         top: 0,
@@ -47,6 +49,23 @@ function Nav() {
         zIndex: 10,
       }}
     >
+      <div>
+        <Link
+          to="/"
+          style={{
+            ...navLinkStyle,
+            fontWeight: 700,
+            fontSize: 14,
+            color: PALETTE.text,
+            display: "flex",
+            alignItems: "center",
+            gap: 6
+          }}
+        >
+          <span>🏠</span> Home
+        </Link>
+      </div>
+
       <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
         <a
           href="/resume.pdf"
