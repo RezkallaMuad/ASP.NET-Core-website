@@ -258,7 +258,7 @@ function getYouTubeEmbedUrl(url: string): string {
 }
 
 function isGoogleDriveVideoUrl(url: string): boolean {
-  return url.includes("drive.google.com");
+  return url.includes("drive.google.com") || url.includes("lh3.googleusercontent.com/d/");
 }
 
 function getGoogleDriveEmbedUrl(url: string): string {
@@ -268,6 +268,8 @@ function getGoogleDriveEmbedUrl(url: string): string {
   } else if (url.includes("id=")) {
     const searchParams = new URLSearchParams(url.split("?")[1]);
     fileId = searchParams.get("id") || "";
+  } else if (url.includes("lh3.googleusercontent.com/d/")) {
+    fileId = url.split("lh3.googleusercontent.com/d/")[1]?.split("/")[0] || "";
   }
   return `https://drive.google.com/file/d/${fileId}/preview`;
 }
