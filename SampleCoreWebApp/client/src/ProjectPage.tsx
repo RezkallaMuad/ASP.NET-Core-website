@@ -43,6 +43,28 @@ export default function ProjectDetailPage() {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (!project) return;
+    const mediaList = project.media && project.media.length > 0 ? [...project.media] : [];
+    if (mediaList.length === 0 && project.imageUrl) {
+      mediaList.push({ type: "image", url: project.imageUrl });
+    }
+    if (mediaList.length <= 1) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        setActiveMedia((prev) => (prev + 1) % mediaList.length);
+      } else if (e.key === "ArrowLeft") {
+        setActiveMedia((prev) => (prev - 1 + mediaList.length) % mediaList.length);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [project]);
+
   if (loading) {
     return <p style={{ padding: 40, color: PALETTE.muted }}>Loading project...</p>;
   }
@@ -131,6 +153,7 @@ export default function ProjectDetailPage() {
             <>
               <div
                 style={{
+                  position: "relative",
                   width: "100%",
                   background: PALETTE.cardBg,
                   border: `1px solid ${PALETTE.border}`,
@@ -171,6 +194,52 @@ export default function ProjectDetailPage() {
                     alt={`${project.name} screenshot`}
                     style={{ width: "100%", height: "auto", display: "block" }}
                   />
+                )}
+
+                {/* Left/Right Overlay Arrows */}
+                {media.length > 1 && (
+                  <>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveMedia((prev) => (prev - 1 + media.length) % media.length);
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "rgba(255, 255, 255, 0.95)";
+                        e.currentTarget.style.transform = "translateY(-50%) scale(1.05)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "rgba(255, 255, 255, 0.8)";
+                        e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+                      }}
+                      aria-label="Previous slide"
+                      style={overlayArrowStyle("left")}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveMedia((prev) => (prev + 1) % media.length);
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "rgba(255, 255, 255, 0.95)";
+                        e.currentTarget.style.transform = "translateY(-50%) scale(1.05)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "rgba(255, 255, 255, 0.8)";
+                        e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+                      }}
+                      aria-label="Next slide"
+                      style={overlayArrowStyle("right")}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </button>
+                  </>
                 )}
               </div>
 
@@ -273,3 +342,24 @@ function getGoogleDriveEmbedUrl(url: string): string {
   }
   return `https://drive.google.com/file/d/${fileId}/preview`;
 }
+
+const overlayArrowStyle = (direction: "left" | "right"): React.CSSProperties => ({
+  position: "absolute",
+  top: "50%",
+  transform: "translateY(-50%)",
+  [direction]: "12px",
+  width: "36px",
+  height: "36px",
+  borderRadius: "50%",
+  background: "rgba(255, 255, 255, 0.8)",
+  backdropFilter: "blur(4px)",
+  border: "1px solid rgba(226, 232, 240, 0.8)",
+  color: "#0f172a",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+  transition: "all 0.2s ease",
+  zIndex: 2,
+});
