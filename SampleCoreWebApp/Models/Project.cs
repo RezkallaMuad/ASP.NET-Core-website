@@ -17,7 +17,7 @@ namespace SampleCoreWebApp.Models
         public required string Name { get; set; }
         public required string Description { get; set; }
         public required string Technologies { get; set; }
-        public required string GitHubUrl { get; set; }
+        public string? GitHubUrl { get; set; }
         public string? ImageUrl { get; set; }
 
         public string? MediaJson { get; set; }

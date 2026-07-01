@@ -123,7 +123,7 @@ export default function ProjectDetailPage() {
           )}
 
           <div style={{ display: "flex", gap: 12 }}>
-            {project.gitHubUrl && (
+            {project.gitHubUrl && project.gitHubUrl.trim() !== "" && (
               <a href={project.gitHubUrl} style={detailLinkStyle}>
                 Source ↗
               </a>
