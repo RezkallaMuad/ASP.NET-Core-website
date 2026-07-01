@@ -131,7 +131,7 @@ export default function ProjectDetailPage() {
             <>
               <div
                 style={{
-                  height: isMobile ? 240 : 360,
+                  width: "100%",
                   background: PALETTE.cardBg,
                   border: `1px solid ${PALETTE.border}`,
                   borderRadius: 8,
@@ -145,7 +145,7 @@ export default function ProjectDetailPage() {
                   isYouTubeUrl(media[activeMedia].url) ? (
                     <iframe
                       src={getYouTubeEmbedUrl(media[activeMedia].url)}
-                      style={{ width: "100%", height: "100%", border: "none" }}
+                      style={{ width: "100%", aspectRatio: "16/9", border: "none", display: "block" }}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       title="Project Video"
@@ -153,7 +153,7 @@ export default function ProjectDetailPage() {
                   ) : isGoogleDriveVideoUrl(media[activeMedia].url) ? (
                     <iframe
                       src={getGoogleDriveEmbedUrl(media[activeMedia].url)}
-                      style={{ width: "100%", height: "100%", border: "none" }}
+                      style={{ width: "100%", aspectRatio: "16/9", border: "none", display: "block" }}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       title="Project Video"
@@ -162,14 +162,14 @@ export default function ProjectDetailPage() {
                     <video
                       src={media[activeMedia].url}
                       controls
-                      style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                      style={{ width: "100%", height: "auto", display: "block" }}
                     />
                   )
                 ) : (
                   <img
                     src={media[activeMedia].url}
                     alt={`${project.name} screenshot`}
-                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                    style={{ width: "100%", height: "auto", display: "block" }}
                   />
                 )}
               </div>
