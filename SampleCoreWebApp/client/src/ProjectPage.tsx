@@ -150,6 +150,14 @@ export default function ProjectDetailPage() {
                       allowFullScreen
                       title="Project Video"
                     />
+                  ) : isGoogleDriveVideoUrl(media[activeMedia].url) ? (
+                    <iframe
+                      src={getGoogleDriveEmbedUrl(media[activeMedia].url)}
+                      style={{ width: "100%", height: "100%", border: "none" }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="Project Video"
+                    />
                   ) : (
                     <video
                       src={media[activeMedia].url}
@@ -266,4 +274,19 @@ function getYouTubeEmbedUrl(url: string): string {
     videoId = url.split("youtube.com/v/")[1]?.split("?")[0] || "";
   }
   return `https://www.youtube.com/embed/${videoId}`;
+}
+
+function isGoogleDriveVideoUrl(url: string): boolean {
+  return url.includes("drive.google.com");
+}
+
+function getGoogleDriveEmbedUrl(url: string): string {
+  let fileId = "";
+  if (url.includes("/file/d/")) {
+    fileId = url.split("/file/d/")[1]?.split("/")[0] || "";
+  } else if (url.includes("id=")) {
+    const searchParams = new URLSearchParams(url.split("?")[1]);
+    fileId = searchParams.get("id") || "";
+  }
+  return `https://drive.google.com/file/d/${fileId}/preview`;
 }
