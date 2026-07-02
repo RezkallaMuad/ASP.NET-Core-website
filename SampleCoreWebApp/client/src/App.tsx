@@ -429,7 +429,9 @@ function ExperienceSection() {
           <div key={exp.id} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8 }}>
               <h3 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 18, fontWeight: 700, margin: 0, color: PALETTE.text }}>
-                {exp.position} <span style={{ color: PALETTE.accent, fontWeight: 500 }}>@ {exp.company}</span>
+                {exp.position}{" "}
+                <span style={{ color: "#94a3b8", fontWeight: 400 }}>|</span>{" "}
+                <span style={{ color: PALETTE.accent, fontWeight: 500 }}>{exp.company}</span>
               </h3>
               <div style={{ fontSize: 13, color: PALETTE.muted, fontWeight: 500, fontFamily: "monospace" }}>
                 {exp.startDate} – {exp.endDate}
@@ -439,10 +441,15 @@ function ExperienceSection() {
               {exp.city}, {exp.country}
             </div>
             {exp.description && (
-              <ul style={{ margin: "8px 0 0 0", paddingLeft: 20, color: PALETTE.muted, fontSize: 14, lineHeight: 1.6 }}>
+              <ul style={{ margin: "8px 0 0 0", paddingLeft: 0, listStyle: "none", color: PALETTE.muted, fontSize: 14, lineHeight: 1.6 }}>
                 {exp.description.split("\n").filter(line => line.trim().length > 0).map((line, i) => {
                   const cleanLine = line.replace(/^[•\-*\s]+/, "");
-                  return <li key={i} style={{ marginBottom: 6 }}>{cleanLine}</li>;
+                  return (
+                    <li key={i} style={{ marginBottom: 6, display: "flex", gap: 8, alignItems: "flex-start" }}>
+                      <span style={{ color: PALETTE.accent, fontWeight: "bold" }}>-</span>
+                      <span>{cleanLine}</span>
+                    </li>
+                  );
                 })}
               </ul>
             )}
