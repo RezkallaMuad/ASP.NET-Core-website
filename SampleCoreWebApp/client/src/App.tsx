@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import ProjectsCarousel from "./ProjectsCarousel";
 import ProjectPage from "./ProjectPage";
 import BlogPostPage from "./BlogPostPage";
-import { Project, BlogPost, Skill } from "./types";
+import { Project, BlogPost, Skill, Experience } from "./types";
 import profileImg from "./assets/ProfilePic.jpeg"; 
 import githubIcon from "./assets/Github.png";
 import emailIcon from "./assets/Email.svg";
@@ -124,6 +124,7 @@ function Home() {
   return (
     <div>
       <TopSection />
+      <ExperienceSection />
       <section id="projects" className="section-padding" style={{ borderBottom: `1px solid ${PALETTE.border}` }}>
         <h2 className="section-title" style={{ fontFamily: "'DM Serif Display', serif", marginBottom: 16, color: PALETTE.text }}>
           Projects
@@ -385,6 +386,70 @@ function SkillsSection() {
         </div>
       ))}
     </div>
+  );
+}
+
+function ExperienceSection() {
+  const [experiences, setExperiences] = useState<Experience[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/Experiences")
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => {
+        setExperiences(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching experiences:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="section-padding" style={{ borderBottom: `1px solid ${PALETTE.border}` }}>
+        <h2 className="section-title" style={{ fontFamily: "'DM Serif Display', serif", marginBottom: 16, color: PALETTE.text }}>
+          Experience
+        </h2>
+        <p style={{ color: PALETTE.muted }}>Loading work experience...</p>
+      </section>
+    );
+  }
+
+  if (experiences.length === 0) return null;
+
+  return (
+    <section id="experience" className="section-padding" style={{ borderBottom: `1px solid ${PALETTE.border}` }}>
+      <h2 className="section-title" style={{ fontFamily: "'DM Serif Display', serif", marginBottom: 32, color: PALETTE.text }}>
+        Experience
+      </h2>
+      <div style={{ display: "flex", flexDirection: "column", gap: 32, maxWidth: 800 }}>
+        {experiences.map((exp) => (
+          <div key={exp.id} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8 }}>
+              <h3 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 18, fontWeight: 700, margin: 0, color: PALETTE.text }}>
+                {exp.position} <span style={{ color: PALETTE.accent, fontWeight: 500 }}>@ {exp.company}</span>
+              </h3>
+              <div style={{ fontSize: 13, color: PALETTE.muted, fontWeight: 500, fontFamily: "monospace" }}>
+                {exp.startDate} – {exp.endDate}
+              </div>
+            </div>
+            <div style={{ fontSize: 13, color: PALETTE.accent, fontWeight: 600, marginTop: -4 }}>
+              {exp.city}, {exp.country}
+            </div>
+            {exp.description && (
+              <ul style={{ margin: "8px 0 0 0", paddingLeft: 20, color: PALETTE.muted, fontSize: 14, lineHeight: 1.6 }}>
+                {exp.description.split("\n").filter(line => line.trim().length > 0).map((line, i) => {
+                  const cleanLine = line.replace(/^[•\-*\s]+/, "");
+                  return <li key={i} style={{ marginBottom: 6 }}>{cleanLine}</li>;
+                })}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 

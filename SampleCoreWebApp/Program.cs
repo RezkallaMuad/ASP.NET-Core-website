@@ -51,6 +51,19 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<Dbcon>();
     await context.Database.EnsureCreatedAsync();
+    await context.Database.ExecuteSqlRawAsync(
+        "CREATE TABLE IF NOT EXISTS \"Experiences\" (" +
+        "\"Id\" INTEGER NOT NULL CONSTRAINT \"PK_Experiences\" PRIMARY KEY AUTOINCREMENT," +
+        "\"Company\" TEXT NOT NULL," +
+        "\"Position\" TEXT NOT NULL," +
+        "\"City\" TEXT NOT NULL," +
+        "\"Country\" TEXT NOT NULL," +
+        "\"StartDate\" TEXT NOT NULL," +
+        "\"EndDate\" TEXT NOT NULL," +
+        "\"Description\" TEXT NULL," +
+        "\"DisplayOrder\" INTEGER NOT NULL DEFAULT 0" +
+        ");"
+    );
 }
 
 

@@ -10,5 +10,7 @@ namespace SampleCoreWebApp.Data
         public DbSet<BlogPost> BlogPosts { get; set; }
 
         public DbSet<Skill> Skills { get; set; }
+
+        public DbSet<Experience> Experiences { get; set; }
     }
 }

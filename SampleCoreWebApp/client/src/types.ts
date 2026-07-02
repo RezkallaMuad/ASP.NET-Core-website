@@ -29,3 +29,15 @@ export interface Skill {
   category: string;
   displayOrder: number;
 }
+
+export interface Experience {
+  id: number;
+  company: string;
+  position: string;
+  city: string;
+  country: string;
+  startDate: string;
+  endDate: string;
+  description?: string;
+  displayOrder: number;
+}
